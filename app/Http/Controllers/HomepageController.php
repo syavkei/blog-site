@@ -33,6 +33,7 @@ class HomepageController extends Controller
             'category:id,name,slug',
             'user:id,name'
         ])->where('slug', $slug)->firstOrFail();
+        $post->increment('views');
         return Inertia::render('Homepage/Post', [
             'post' => $post,
             'categories' => $categories

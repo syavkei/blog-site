@@ -14,6 +14,7 @@ class Post extends Model
         'excerpt',
         'image',
         'category_id',
+        'views',
         'user_id'
     ];
 
