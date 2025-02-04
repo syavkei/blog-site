@@ -14,6 +14,10 @@ class PermissionController extends Controller
 {
     public function index(Request $request)
     {
+        if (!Auth::user()->can('view_roles')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         $query = Permission::query();
 
         $permissions = $query->paginate(10);
@@ -24,12 +28,20 @@ class PermissionController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->can('create_roles')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         $permissions = Permission::all();
         return Inertia::render('Admin/Permission/Create');
     }
 
     public function store(Request $request)
     {
+        if (!Auth::user()->can('create_roles')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         DB::beginTransaction();
         try {
 

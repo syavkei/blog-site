@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -15,11 +16,16 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
+        if (!Auth::user()->can('view_users')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         $query = User::with('roles');
 
         $users = $query->paginate(10);
@@ -31,6 +37,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->can('create_users')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         $roles = Role::all();
 
         return Inertia::render('Admin/User/Create', [
@@ -43,6 +53,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->can('create_users')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
         DB::beginTransaction();
         try {
             $user = User::create([
@@ -70,6 +83,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        if (!Auth::user()->can('view_users')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         return Inertia::render('Admin/User/Show', [
             'user' => ['data' => $user->load('roles')],
         ]);
@@ -80,6 +97,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if (!Auth::user()->can('edit_users')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         $roles = Role::all();
         return Inertia::render('Admin/User/Edit', [
             'user' => ['data' => $user->load('roles')],
@@ -92,6 +113,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if (!Auth::user()->can('edit_users')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         DB::beginTransaction();
         try {
             $user->name = $request->name;

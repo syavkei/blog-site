@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +24,10 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+        if (!Auth::user()->can('view_roles')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         $query = Post::with(['category', 'user']);
 
         if ($request->user()->roles[0]->name != 'super-admin') {
@@ -45,6 +50,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->can('create_roles')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         $categories = Category::all();
 
         return Inertia::render('Admin/Posts/Create', [
@@ -57,6 +66,10 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+        if (!Auth::user()->can('create_roles')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
+
         DB::beginTransaction();
 
         $imagePath = null;
@@ -108,6 +121,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if (!Auth::user()->can('view_roles')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
         $categories = Category::all();
 
         return Inertia::render('Admin/Posts/Show', [
@@ -121,6 +137,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (!Auth::user()->can('edit_roles')) {
+            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized');
+        }
         $categories = Category::all();
         $post->load(['category', 'user']);
 

@@ -94,7 +94,7 @@ export default function ProfileEdit({ user }) {
                         <CustomFooterButton
                             saveButton={true}
                             cancelButton={true}
-                            cancelRoute={route("admin.users.index")}
+                            cancelRoute={route("admin.dashboard")}
                         />
                     </form>
                 </Card>
