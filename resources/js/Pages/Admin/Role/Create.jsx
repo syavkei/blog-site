@@ -1,33 +1,29 @@
 import CustomFooterButton from "@/Components/CustomFooterButton";
-import CustomInputFile from "@/Components/CustomInputFile";
+import CustomIndexToolbar from "@/Components/CustomIndexToolbar";
+import CustomInputSelect from "@/Components/CustomInputSelect";
 import CustomInputText from "@/Components/CustomInputText";
 import Layout from "@/Layouts/layout/layout";
 import { Head, useForm } from "@inertiajs/react";
 import { Card } from "primereact/card";
+import { DataTable } from "primereact/datatable";
 import React from "react";
 
-export default function AdminCategoryEdit({ category }) {
+export default function RoleCreate({ permissionOptions }) {
     const { data, setData, post, reset, processing, errors } = useForm({
-        name: category.name,
-        image: null,
-        _method: "PUT",
+        name: "",
+        permissions: [],
     });
-
-    const handleFileUpload = (e, fieldName) => {
-        const file = e.files[0];
-        setData(fieldName, file);
-    };
 
     function handleSubmit(e) {
         e.preventDefault();
-        post(route("admin.categories.update", category));
+        post(route("admin.roles.store"));
     }
 
     return (
         <>
-            <Head title="Category::Edit" />
+            <Head title="Role::Create" />
             <Layout>
-                <Card title="Edit Category">
+                <Card title="Create Role">
                     <form onSubmit={handleSubmit}>
                         <CustomInputText
                             label="Name"
@@ -37,24 +33,24 @@ export default function AdminCategoryEdit({ category }) {
                             error={errors.name}
                             onfocus={(e) => errors.name && reset("name")}
                         />
-
-                        <CustomInputFile
-                            label="Image"
-                            name="image"
-                            onchange={(e) => handleFileUpload(e, "image")}
-                            error={errors.image}
-                            onfocus={(e) => errors.image && reset("image")}
-                            accept=".jpg,.png,.jpeg"
-                            chooseLabel="Choose Post Image"
-                            mode="advanced"
-                            auto={true}
-                            isMultiple={false}
+                        <CustomInputSelect
+                            label="Permission"
+                            name="permissions"
+                            value={data.permissions}
+                            onchange={(e) => {
+                                setData("permissions", e);
+                            }}
+                            error={errors.permissions}
+                            onfocus={(e) =>
+                                errors.permissions && clearErrors("permissions")
+                            }
+                            options={permissionOptions.data}
+                            isMulti={true}
                         />
-
                         <CustomFooterButton
                             saveButton={true}
                             cancelButton={true}
-                            cancelRoute={route("admin.categories.index")}
+                            cancelRoute={route("admin.roles.index")}
                         />
                     </form>
                 </Card>

@@ -1,33 +1,26 @@
 import CustomFooterButton from "@/Components/CustomFooterButton";
-import CustomInputFile from "@/Components/CustomInputFile";
 import CustomInputText from "@/Components/CustomInputText";
 import Layout from "@/Layouts/layout/layout";
 import { Head, useForm } from "@inertiajs/react";
 import { Card } from "primereact/card";
+import { DataTable } from "primereact/datatable";
 import React from "react";
 
-export default function AdminCategoryEdit({ category }) {
+export default function RoleCreate() {
     const { data, setData, post, reset, processing, errors } = useForm({
-        name: category.name,
-        image: null,
-        _method: "PUT",
+        name: "",
     });
-
-    const handleFileUpload = (e, fieldName) => {
-        const file = e.files[0];
-        setData(fieldName, file);
-    };
 
     function handleSubmit(e) {
         e.preventDefault();
-        post(route("admin.categories.update", category));
+        post(route("admin.permissions.store"));
     }
 
     return (
         <>
-            <Head title="Category::Edit" />
+            <Head title="Permission::Create" />
             <Layout>
-                <Card title="Edit Category">
+                <Card title="Create Permission">
                     <form onSubmit={handleSubmit}>
                         <CustomInputText
                             label="Name"
@@ -38,23 +31,10 @@ export default function AdminCategoryEdit({ category }) {
                             onfocus={(e) => errors.name && reset("name")}
                         />
 
-                        <CustomInputFile
-                            label="Image"
-                            name="image"
-                            onchange={(e) => handleFileUpload(e, "image")}
-                            error={errors.image}
-                            onfocus={(e) => errors.image && reset("image")}
-                            accept=".jpg,.png,.jpeg"
-                            chooseLabel="Choose Post Image"
-                            mode="advanced"
-                            auto={true}
-                            isMultiple={false}
-                        />
-
                         <CustomFooterButton
                             saveButton={true}
                             cancelButton={true}
-                            cancelRoute={route("admin.categories.index")}
+                            cancelRoute={route("admin.permissions.index")}
                         />
                     </form>
                 </Card>

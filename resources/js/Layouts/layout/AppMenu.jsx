@@ -36,6 +36,27 @@ const AppMenu = () => {
                 },
             ],
         },
+        {
+            label: "User Access",
+            access: "view_users",
+            items: [
+                {
+                    label: "User",
+                    icon: PrimeIcons.USER,
+                    to: route("admin.users.index"),
+                },
+                {
+                    label: "Role",
+                    icon: PrimeIcons.KEY,
+                    to: route("admin.roles.index"),
+                },
+                {
+                    label: "Permission",
+                    icon: PrimeIcons.KEY,
+                    to: route("admin.permissions.index"),
+                },
+            ],
+        },
     ];
 
     return (

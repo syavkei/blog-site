@@ -1,66 +1,100 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="#"><img src="https://github.com/syavkei/blog-site/blob/main/public/images/logo.png?raw=true" width="200" alt="Blog Site"></a>
 </p>
 
-## About Laravel
+# Blog Site
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A modern platform for sharing stories, ideas, and knowledge with the world. We're passionate about sharing knowledge and fostering a community of learners and innovators.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This project is a blog site built using Laravel 11, Inertia.js, React, and PrimeReact.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technologies Used
 
-## Learning Laravel
+-   **Backend:** Laravel 11
+-   **Frontend:** React, Inertia.js
+-   **UI Library:** PrimeReact
+-   **Database:** MySQL
+-   **Other Libraries:** Spatie Permission
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **Blog Posts:** Create, read, update, and delete blog posts.
+-   **Categories:** Organize blog posts into categories.
+-   **User Authentication:** Secure user registration and login.
+-   **Responsive Design:** The blog is designed to be responsive across different devices.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+1.  **Clone the repository:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    ```bash
+    git clone [https://github.com/syavkei/Blog-Site.git](https://www.google.com/search?q=https://github.com/syavkei/Blog-Site.git)
+    ```
 
-### Premium Partners
+2.  **Navigate to the project directory:**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    ```bash
+    cd Blog-Site
+    ```
 
-## Contributing
+3.  **Install Composer dependencies:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```bash
+    composer install
+    ```
 
-## Code of Conduct
+4.  **Install NPM dependencies:**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    ```bash
+    npm install
+    ```
 
-## Security Vulnerabilities
+5.  **Copy the `.env.example` file to `.env` and configure your environment variables:**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```bash
+    cp .env.example .env
+    ```
 
-## License
+6.  **Generate an application key:**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    php artisan key:generate
+    ```
+
+7.  **Configure your database connection in the `.env` file.**
+
+8.  **Run database migrations:**
+
+    ```bash
+    php artisan migrate
+    ```
+
+9.  **Seed database:**
+
+    ```bash
+    php artisan db:seed
+
+    ```
+
+10. **Compile the frontend assets:**
+
+    ```bash
+    npm run dev
+    ```
+
+11. **Start the development server:**
+
+    ```bash
+    php artisan serve
+    ```
+
+## Usage
+
+-   Visit `http://localhost:8000` in your browser to access the blog site.
+
+## Super Admin User
+
+-   email : uperadmin@gmail.com
+-   password : password
+
+##

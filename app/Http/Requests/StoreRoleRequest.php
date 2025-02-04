@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCategoryRequest extends FormRequest
+class StoreRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return auth()->user()->can('create_categories');
+        return auth()->check();
     }
 
     /**
@@ -22,8 +22,8 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'image' => ['nullable', 'image'],
+            'name' => ['required', 'string', 'max:255', 'unique:roles,name'],
+            'permissions' => ['nullable', 'array'],
         ];
     }
 }

@@ -68,7 +68,7 @@ class PostController extends Controller
                 $extension = $request->file('image')->getClientOriginalExtension();
 
                 $fileName = "{$slug}-{$timestamp}.{$extension}";
-                $path = 'post-header/' . date('Y/m/d');
+                $path = date('Y/m/d');
 
                 $imagePath = $request->file('image')->storeAs($path, $fileName, 'public');
             }
@@ -154,7 +154,7 @@ class PostController extends Controller
                 $extension = $request->file('image')->getClientOriginalExtension();
 
                 $fileName = "{$slug}.{$extension}";
-                $path = 'post-header/' . date('Y/m/d');
+                $path = date('Y/m/d');
 
                 $imagePath = $request->file('image')->storeAs($path, $fileName, 'public');
 

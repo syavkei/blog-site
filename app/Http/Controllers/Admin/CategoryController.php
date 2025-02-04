@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -47,8 +48,20 @@ class CategoryController extends Controller
     {
         DB::beginTransaction();
         try {
+            if ($request->file('image')) {
+                $slug = Str::slug($request->input('title'));
+                $timestamp = now()->format('Ymd');
+                $extension = $request->file('image')->getClientOriginalExtension();
+
+                $fileName = "{$slug}-{$timestamp}.{$extension}";
+                $path = date('Y/m/d');
+
+                $imagePath = $request->file('image')->storeAs($path, $fileName, 'public');
+            }
+
             Category::create([
-                'name' => $request->name
+                'name' => $request->name,
+                'image' => $imagePath
             ]);
             DB::commit();
             return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
@@ -89,11 +102,27 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         DB::beginTransaction();
+        $slug = str()->slug($request->name);
         try {
             $category->update([
                 'name' => $request->name,
-                'slug' => str()->slug($request->name)
+                'slug' => $slug
             ]);
+
+            if ($request->file('image')) {
+
+                $extension = $request->file('image')->getClientOriginalExtension();
+
+                $fileName = "{$slug}.{$extension}";
+                $path = date('Y/m/d');
+
+                $imagePath = $request->file('image')->storeAs($path, $fileName, 'public');
+
+                $category->update([
+                    'image' => $imagePath
+                ]);
+            }
+
             DB::commit();
             return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
         } catch (Exception $e) {

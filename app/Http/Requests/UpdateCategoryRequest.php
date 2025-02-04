@@ -11,7 +11,7 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check();
+        return auth()->user()->can('edit_categories');
     }
 
     /**
@@ -23,6 +23,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'image' => ['nullable', 'image'],
         ];
     }
 }

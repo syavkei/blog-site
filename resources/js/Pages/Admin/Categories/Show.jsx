@@ -1,5 +1,6 @@
 import CustomFooterButton from "@/Components/CustomFooterButton";
 import CustomInputText from "@/Components/CustomInputText";
+import CustomShowSingleFile from "@/Components/CustomShowSingleFile";
 import Layout from "@/Layouts/layout/layout";
 import { Head } from "@inertiajs/react";
 import { Card } from "primereact/card";
@@ -17,6 +18,11 @@ export default function AdminCategoryShow({ category }) {
                             name="name"
                             value={category.name}
                             disabled
+                        />
+
+                        <CustomShowSingleFile
+                            label="Image"
+                            filePath={category.image_path}
                         />
 
                         <CustomFooterButton

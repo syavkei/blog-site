@@ -17,6 +17,11 @@ export default function AdminPostEdit({ postData, categoryOptions }) {
         _method: "PUT",
     });
 
+    const handleFileUpload = (e, fieldName) => {
+        const file = e.files[0];
+        setData(fieldName, file);
+    };
+
     function handleSubmit(e) {
         e.preventDefault();
         post(route("admin.posts.update", postData));
