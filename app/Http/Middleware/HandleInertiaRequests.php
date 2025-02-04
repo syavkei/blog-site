@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
+                'image_path' => $user->image_path,
                 'roles' => $user->roles,
                 'permissions' => $user->getAllPermissions(),
             ];

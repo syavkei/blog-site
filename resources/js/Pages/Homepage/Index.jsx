@@ -4,6 +4,7 @@ import { HeroSlider } from "@/Components/HeroSlider";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
+import "./Index.css";
 
 export default function HomepageIndex({ categories, posts, latest }) {
     return (
@@ -19,11 +20,12 @@ export default function HomepageIndex({ categories, posts, latest }) {
                     </div>
 
                     <div
-                        style={{
-                            display: "flex",
-                            gap: "1rem",
-                            justifyContent: "center",
-                        }}
+                        // style={{
+                        //     display: "grid",
+                        //     gap: "1rem",
+                        //     gridTemplateColumns: "repeat(3, 1fr)",
+                        // }}
+                        className="latest-posts"
                     >
                         {latest.map((post) => (
                             <BlogCard key={post.id} post={post} />

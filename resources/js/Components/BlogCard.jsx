@@ -2,9 +2,11 @@ import React from "react";
 import { format } from "date-fns";
 import { Link } from "@inertiajs/react";
 
-export function BlogCard({ post }) {
+export function BlogCard({ post, className }) {
     return (
-        <article className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:-translate-y-1 w-full">
+        <article
+            className={`bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:-translate-y-1`}
+        >
             <Link href={`/post/${post.slug}`}>
                 <img
                     src={post.image_path}
@@ -12,7 +14,7 @@ export function BlogCard({ post }) {
                     className="w-full h-48 object-cover"
                 />
             </Link>
-            <div className="p-6">
+            <div className="p-4">
                 <div className="flex items-center space-x-2 mb-3">
                     <Link
                         href={`/category/${post.category.slug}`}

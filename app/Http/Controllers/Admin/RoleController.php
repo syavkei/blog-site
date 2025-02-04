@@ -46,7 +46,7 @@ class RoleController extends Controller
                 $role->givePermissionTo($permission['label']);
             }
             DB::commit();
-            return redirect()->route('roles.index')->with('success', 'Role berhasil dibuat');
+            return redirect()->route('admin.roles.index')->with('success', 'Role berhasil dibuat');
         } catch (Exception $e) {
             DB::rollBack();
             if (app()->environment() === 'production') {

@@ -1,6 +1,7 @@
 import MainLayout from "@/Layouts/MainLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
+import "./About.css";
 
 export default function About({ categories, contributors, posts }) {
     console.log("contributors", contributors);
@@ -26,11 +27,11 @@ export default function About({ categories, contributors, posts }) {
                     </p>
                 </div>
 
-                <div className="flex justify-center gap-8 mb-16">
+                <div className="stats">
                     {stats.map(({ icon, label, value }) => (
                         <div
                             key={label}
-                            className="bg-white p-8 rounded-lg shadow-md text-center w-full"
+                            className="bg-white p-5 rounded-lg shadow-md text-center w-full"
                         >
                             <i
                                 className={`h-8 w-8 text-indigo-600 mx-auto mb-4 ${icon}`}
@@ -48,7 +49,18 @@ export default function About({ categories, contributors, posts }) {
                     <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
                         Our Team
                     </h2>
-                    <div className="flex justify-center gap-8">
+                    <div
+                        className="contributors"
+                        style={{
+                            display: "grid",
+                            gap: "1rem",
+                            gridTemplateColumns: `repeat(${
+                                contributors.length < 3
+                                    ? contributors.length
+                                    : 3
+                            }, 1fr)`,
+                        }}
+                    >
                         {contributors.map((user) => (
                             <div
                                 key={user?.name}

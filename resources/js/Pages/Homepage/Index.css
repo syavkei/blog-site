@@ -1,0 +1,39 @@
+.latest-posts {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.categories-section {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.categories-section h3 {
+    font-size: large;
+}
+
+@media screen and (max-width: 768px) {
+    .latest-posts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .categories-section {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .latest-posts {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .categories-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .categories-section h3 {
+        font-size: small;
+    }
+}

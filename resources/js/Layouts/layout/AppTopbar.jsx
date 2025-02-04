@@ -8,7 +8,8 @@ import React, {
     useRef,
 } from "react";
 import { LayoutContext } from "./context/layoutcontext";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
+import { Avatar } from "primereact/avatar";
 
 const AppTopbar = forwardRef((props, ref) => {
     const { layoutConfig, layoutState, onMenuToggle, showProfileSidebar } =
@@ -22,6 +23,10 @@ const AppTopbar = forwardRef((props, ref) => {
         topbarmenu: topbarmenuRef.current,
         topbarmenubutton: topbarmenubuttonRef.current,
     }));
+
+    const { auth } = usePage().props;
+
+    console.log("auth", auth);
 
     return (
         <div className="layout-topbar">
@@ -51,7 +56,11 @@ const AppTopbar = forwardRef((props, ref) => {
                 className="p-link layout-topbar-menu-button layout-topbar-button"
                 onClick={showProfileSidebar}
             >
-                <i className="pi pi-user" />
+                {auth.user.image_path ? (
+                    <Avatar image={auth.user.image_path} shape="circle" />
+                ) : (
+                    <i className="pi pi-user"></i>
+                )}
             </button>
 
             <div
@@ -62,7 +71,7 @@ const AppTopbar = forwardRef((props, ref) => {
                 })}
             >
                 <Link
-                    href={route("profile.edit")}
+                    href={route("admin.profile.edit")}
                     className="p-link layout-topbar-button"
                 >
                     <i className="pi pi-user"></i>

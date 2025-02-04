@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +15,24 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Dashboard');
+        $post_query = Post::with([
+            'category:id,name,slug',
+            'user:id,name'
+        ]);
+
+        $posts = $post_query->get();
+        $populars = $post_query->orderBy('views', 'desc')->take(3)->get();
+
+        $total_views = Post::sum('views');
+
+        $contributors = User::role('writer')->with('roles')->get();
+
+        return Inertia::render('Admin/Dashboard', [
+            'posts' => $posts,
+            'populars' => $populars,
+            'contributors' => $contributors,
+            'total_views' => $total_views
+        ]);
     }
 
     /**

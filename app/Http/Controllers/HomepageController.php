@@ -12,9 +12,9 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        $categories = Category::select('id', 'name', 'slug')->get();
+        $categories = Category::select('id', 'name', 'slug', 'image')->get();
         $post_query = Post::with([
-            'category:id,name,slug',
+            'category:id,name,slug,image',
             'user:id,name'
         ]);
         $posts = $post_query->get();

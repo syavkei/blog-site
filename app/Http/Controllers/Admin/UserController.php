@@ -53,7 +53,7 @@ class UserController extends Controller
             ]);
             $user->assignRole($request->role_id);
             DB::commit();
-            return redirect()->route('users.index')->with('success', 'User berhasil dibuat');
+            return redirect()->route('admin.users.index')->with('success', 'User berhasil dibuat');
         } catch (Exception $e) {
             DB::rollBack();
             if (app()->environment() === 'production') {
@@ -97,11 +97,11 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             if ($request->password) $user->password = Hash::make($request->password);
+            $user->is_approved = $request->is_approved;
             $user->save();
             $user->syncRoles($request->role_id);
-            $user->is_approved = $request->is_approved;
             DB::commit();
-            return redirect()->route('users.index')->with('success', 'User berhasil diubah');
+            return redirect()->route('admin.users.index')->with('success', 'User berhasil diubah');
         } catch (Exception $e) {
             DB::rollBack();
             if (app()->environment() === 'production') {

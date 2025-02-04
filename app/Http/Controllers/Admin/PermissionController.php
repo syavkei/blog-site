@@ -38,7 +38,7 @@ class PermissionController extends Controller
                 'guard_name' => 'web'
             ]);
             DB::commit();
-            return redirect()->route('permissions.index')->with('success', 'Permission berhasil dibuat');
+            return redirect()->route('admin.permissions.index')->with('success', 'Permission berhasil dibuat');
         } catch (Exception $e) {
             DB::rollBack();
             if (app()->environment() === 'production') {

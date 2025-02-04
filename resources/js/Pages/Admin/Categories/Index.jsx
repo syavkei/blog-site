@@ -7,6 +7,7 @@ import { Card } from "primereact/card";
 import { Column } from "primereact/column";
 import { confirmDialog } from "primereact/confirmdialog";
 import { DataTable } from "primereact/datatable";
+import { Image } from "primereact/image";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -61,6 +62,24 @@ export default function AdminCategoryIndex({ categories }) {
         });
     }
 
+    const imageBodyTemplate = (post) => {
+        return (
+            post.image && (
+                <>
+                    <span className="p-column-title">Photo</span>
+                    <Image
+                        src={`${post.image_path}`}
+                        alt="Image"
+                        width="90"
+                        height="90"
+                        className="object-cover"
+                        preview
+                    />
+                </>
+            )
+        );
+    };
+
     return (
         <>
             <Head title="Category" />
@@ -100,6 +119,13 @@ export default function AdminCategoryIndex({ categories }) {
                             header="Slug"
                             headerClassName="text-center font-bold"
                             style={{ textWrap: "nowrap" }}
+                        />
+                        <Column
+                            field="image"
+                            header="Image"
+                            headerClassName="text-center font-bold"
+                            style={{ textWrap: "nowrap" }}
+                            body={imageBodyTemplate}
                         />
                     </DataTable>
                     <CustomPaginator

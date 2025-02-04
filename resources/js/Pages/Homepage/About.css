@@ -1,0 +1,12 @@
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 7rem;
+}
+
+@media screen and (max-width: 576px) {
+    .contributors {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
