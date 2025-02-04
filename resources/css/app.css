@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main {
+    margin-left: 250px; /* Adjust based on sidebar width */
+    padding-top: 70px; /* Adjust based on navbar height */
+}
+
+/* Sidebar width */
+.p-sidebar {
+    width: 250px;
+}
+
+/* Footer styling */
+footer {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    text-align: center;
+    margin-top: auto;
+}
