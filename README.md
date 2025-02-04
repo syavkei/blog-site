@@ -10,11 +10,11 @@ This project is a blog site built using Laravel 11, Inertia.js, React, and Prime
 
 ## Technologies Used
 
--   **Backend:** Laravel 11
--   **Frontend:** React, Inertia.js
--   **UI Library:** PrimeReact
--   **Database:** MySQL
--   **Other Libraries:** Spatie Permission
+-   **Backend:** <a href="https://laravel.com/" target="_blank">Laravel 11</a>
+-   **Frontend:** <a href="https://react.dev/" target="_blank">React</a>,<a href="https://inertiajs.com/" target="_blank">Inertia.js</a>
+-   **UI Library:** <a href="https://primereact.org/" target="_blank">PrimeReact</a>
+-   **Database:** <a href="https://www.mysql.com/" target="_blank">MySQL</a>
+-   **Other Libraries:** <a href="https://spatie.be/docs/laravel-permission/v6/introduction" target="_blank">Spatie Permission</a>
 
 ## Features
 
@@ -94,7 +94,7 @@ This project is a blog site built using Laravel 11, Inertia.js, React, and Prime
 
 ## Super Admin User
 
--   email : uperadmin@gmail.com
+-   email : superadmin@gmail.com
 -   password : password
 
 ##
