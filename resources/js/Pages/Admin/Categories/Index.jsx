@@ -2,7 +2,7 @@ import CustomActionButton from "@/Components/CustomActionButton";
 import CustomIndexToolbar from "@/Components/CustomIndexToolbar";
 import CustomPaginator from "@/Components/CustomPaginator";
 import Layout from "@/Layouts/layout/layout";
-import { Head, router } from "@inertiajs/react";
+import { Head, router, usePage } from "@inertiajs/react";
 import { Card } from "primereact/card";
 import { Column } from "primereact/column";
 import { confirmDialog } from "primereact/confirmdialog";
@@ -11,8 +11,11 @@ import { Image } from "primereact/image";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function AdminCategoryIndex({ categories }) {
+export default function AdminCategoryIndex({ auth, categories }) {
     const [search, setSearch] = useState("");
+    const permissionList = auth.user.permissions.map(
+        (permission) => permission.name
+    );
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
         router.get(
@@ -25,8 +28,12 @@ export default function AdminCategoryIndex({ categories }) {
         return (
             <CustomActionButton
                 viewButton={true}
-                editButton={true}
-                deleteButton={true}
+                editButton={
+                    permissionList.includes("update_categories") ? true : false
+                }
+                deleteButton={
+                    permissionList.includes("delete_categories") ? true : false
+                }
                 viewRoute={route("admin.categories.show", category)}
                 editRoute={route("admin.categories.edit", category)}
                 deleteFunction={() => confirmDelete(category)}
@@ -86,7 +93,11 @@ export default function AdminCategoryIndex({ categories }) {
             <Layout>
                 <Card title="Category">
                     <CustomIndexToolbar
-                        addLink={route("admin.categories.create")}
+                        addLink={
+                            permissionList.includes("create_categories")
+                                ? route("admin.categories.create")
+                                : null
+                        }
                         onChangeSearchOnPagination={handleSearchChange}
                         search={search}
                     />

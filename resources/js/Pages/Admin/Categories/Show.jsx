@@ -6,7 +6,10 @@ import { Head } from "@inertiajs/react";
 import { Card } from "primereact/card";
 import React from "react";
 
-export default function AdminCategoryShow({ category }) {
+export default function AdminCategoryShow({ auth, category }) {
+    const permissionList = auth.user.permissions.map(
+        (permission) => permission.name
+    );
     return (
         <>
             <Head title="Category::Detail" />
@@ -26,7 +29,11 @@ export default function AdminCategoryShow({ category }) {
                         />
 
                         <CustomFooterButton
-                            editButton={true}
+                            editButton={
+                                permissionList.includes("update_categories")
+                                    ? true
+                                    : false
+                            }
                             editRoute={route("admin.categories.edit", category)}
                             cancelButton={true}
                             cancelRoute={route("admin.categories.index")}

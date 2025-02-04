@@ -26,8 +26,6 @@ const AppTopbar = forwardRef((props, ref) => {
 
     const { auth } = usePage().props;
 
-    console.log("auth", auth);
-
     return (
         <div className="layout-topbar">
             <Link href="/" className="layout-topbar-logo">
